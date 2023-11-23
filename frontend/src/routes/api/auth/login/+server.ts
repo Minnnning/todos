@@ -1,10 +1,10 @@
 import type { RequestHandler } from './$types';
-import { API_HOST } from '$env/static/private';
+import { PUBLIC_API_HOST } from '$env/static/public';
 import { dev } from '$app/environment';
 
 export const POST: RequestHandler = async ({ request, fetch, cookies }) => {
 	const dto: LoginDto = await request.json();
-	const response = await fetch(API_HOST + '/auth/login', {
+	const response = await fetch(PUBLIC_API_HOST + '/auth/login', {
 		method: 'POST',
 		body: JSON.stringify(dto),
 		headers: {

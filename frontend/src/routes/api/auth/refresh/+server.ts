@@ -1,10 +1,10 @@
 import { dev } from '$app/environment';
-import { API_HOST } from '$env/static/private';
+import { PUBLIC_API_HOST } from '$env/static/public';
 import type { RequestHandler } from '@sveltejs/kit';
 
 export const GET: RequestHandler = async ({ cookies }) => {
 	const token = cookies.get('refreshToken');
-	const response = await fetch(API_HOST + '/auth/token/refresh', {
+	const response = await fetch(PUBLIC_API_HOST + '/auth/token/refresh', {
 		method: 'POST',
 		body: JSON.stringify({ refreshToken: token }),
 		headers: {

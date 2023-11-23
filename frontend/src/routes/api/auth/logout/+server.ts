@@ -1,11 +1,11 @@
 import type { RequestHandler } from './$types';
-import { API_HOST } from '$env/static/private';
+import { PUBLIC_API_HOST } from '$env/static/public';
 
 export const POST: RequestHandler = async ({ fetch, cookies }) => {
 	const refreshToken = cookies.get('refreshToken');
 	const data = { refreshToken };
 
-	await fetch(API_HOST + '/auth/logout', {
+	await fetch(PUBLIC_API_HOST+ '/auth/logout', {
 		method: 'POST',
 		body: JSON.stringify(data)
 	});

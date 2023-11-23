@@ -3,6 +3,7 @@
 	import { GET, POST } from '$lib/services/http.js';
 	import { goto } from '$app/navigation';
 	import { page } from '$app/stores';
+	import { PUBLIC_API_HOST } from '$env/static/public';
 
 	let fileInput: HTMLInputElement;
 
@@ -14,7 +15,7 @@
 		userStore.set(null);
 		goto('/login');
 	};
-	//type InputEvent -> any 변경 
+	//type InputEvent -> any 변경
 	const uploadImage = async (event: any) => {
 		const file = (event.currentTarget as any).files[0];
 		const formData = new FormData();
@@ -42,7 +43,7 @@
 			<button type="button" on:click={selectImage}>
 				<!-- svelte-ignore a11y-missing-attribute -->
 				<img
-					src="http://localhost:3333/static/{$userStore.image}"
+					src="{PUBLIC_API_HOST}/static/{$userStore.image}"
 					class="h-10 aspect-square rounded-full"
 				/>
 				<input

@@ -41,6 +41,7 @@ declare global {
 	};
 
 	type CreateProjectDto = Pick<Project, 'name' | 'description'>;
+	type AddMemberDto = Pick<UserDto, 'email' >;
 
 	type ProjectTask = {
 		id: number;

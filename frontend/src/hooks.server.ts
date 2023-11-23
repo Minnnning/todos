@@ -1,4 +1,5 @@
-import { API_HOST, HOST } from '$env/static/private';
+import { HOST } from '$env/static/private';
+import { PUBLIC_API_HOST} from '$env/static/public';
 import type { Handle, HandleFetch } from '@sveltejs/kit';
 
 export const handle: Handle = async ({ event, resolve }) => {
@@ -10,7 +11,7 @@ export const handleFetch: HandleFetch = async ({ request, fetch, event }) => {
 	console.log('fetch', request.url);
 	const cloneRequest = request.clone();
 
-	if (!request.url.startsWith(HOST) && !request.url.startsWith(API_HOST)) return fetch(request);
+	if (!request.url.startsWith(HOST) && !request.url.startsWith(PUBLIC_API_HOST)) return fetch(request);
 
 	const accessToken = event.cookies.get('accessToken');
 	//console.log(accessToken);

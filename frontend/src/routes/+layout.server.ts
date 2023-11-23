@@ -1,13 +1,13 @@
-import { API_HOST } from '$env/static/private';
+import { PUBLIC_API_HOST } from '$env/static/public';
 import type { LayoutServerLoad } from './$types';
 //import { redirect } from '@sveltejs/kit';
 
 export const load = (async ({ fetch, cookies }) => {
-	const apiHost = API_HOST;
+	const apiHost = PUBLIC_API_HOST;
 	const token = cookies.get('accessToken') || null;
 	let user: UserDto | null = null;
 	if (token) {
-		user = await fetch(API_HOST + '/auth/getme', {
+		user = await fetch(PUBLIC_API_HOST + '/auth/getme', {
 			method: 'GET',
 			headers: {
 				'Content-type': 'application/json',
